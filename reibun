@@ -7,6 +7,8 @@ require_relative 'lib/reibun'
 SEARCH_ROOT = ""
 # Maximum number of results to display.
 MAX_RESULTS = 20
+# ANSI color code for highlighting
+HIGHLIGHT_COLOR = "1;31"
 
 if ARGV.length < 1
   puts "Insufficient arguments."
@@ -23,7 +25,14 @@ end
 word = ARGV[0].encode('utf-8', 'external')
 matches = Matcher.new word, SEARCH_ROOT
 
+def highlight text
+  "\033[#{HIGHLIGHT_COLOR}m#{text}\033[0m"
+end
+
 matches.take(MAX_RESULTS).each do |file, line, match|
+  start, stop = match.offset 0
+  line[start..stop] = highlight match.to_s
+
   puts File.basename file
   puts line
   puts
