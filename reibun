@@ -2,7 +2,10 @@
 
 require_relative 'lib/reibun'
 
-SEARCH_ROOT = "/host/Users/Bryan Taylor/Desktop/anime/LN_pack"
+# The root directory to search.  All text files in this directory and its 
+# children will be searched
+SEARCH_ROOT = ""
+# Maximum number of results to display.
 MAX_RESULTS = 20
 
 if ARGV.length < 1
