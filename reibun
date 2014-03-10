@@ -5,7 +5,18 @@ require_relative 'lib/reibun'
 SEARCH_ROOT = "/host/Users/Bryan Taylor/Desktop/anime/LN_pack"
 MAX_RESULTS = 20
 
-puts ARGV[0]
+if ARGV.length < 1
+  puts "Insufficient arguments."
+  puts "USAGE: reibun <word>"
+  exit 1
+end
+
+if SEARCH_ROOT.empty?
+  puts "Please edit SEARCH_ROOT in the reibun script to point to the"
+  puts "correct books directory."
+  exit 1
+end
+
 word = ARGV[0].encode('utf-8', 'external')
 matches = Matcher.new word, SEARCH_ROOT
 
