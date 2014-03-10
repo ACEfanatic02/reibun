@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require_relative 'lib/reibun'
+
+SEARCH_ROOT = "/host/Users/Bryan Taylor/Desktop/anime/LN_pack"
+MAX_RESULTS = 20
+
+puts ARGV[0]
+word = ARGV[0].encode('utf-8', 'external')
+matches = Matcher.new word, SEARCH_ROOT
+
+matches.take(MAX_RESULTS).each do |file, line, match|
+  puts File.basename file
+  puts line
+  puts
+end
